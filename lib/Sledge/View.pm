@@ -1,7 +1,7 @@
 package Sledge::View;
 use strict;
 use warnings;
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 use Sledge::Exceptions;
 
 sub new {

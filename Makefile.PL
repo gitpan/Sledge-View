@@ -5,6 +5,7 @@ use inc::Module::Install;
 name            'Sledge-View';
 all_from        'lib/Sledge/View.pm';
 
+requires 'HTTP::Headers' => 0;
 requires 'Class::Accessor::Fast' => 0;
 requires 'UNIVERSAL::require' => 0;
 build_requires 'Class::Trigger' => 0;

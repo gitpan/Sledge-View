@@ -8,7 +8,6 @@ use UNIVERSAL::require;
 sub import {
     my $pkg = caller(0);
 
-    # add BEFORE_OUTPUT trigger
     no strict 'refs'; ## no critic
     *{"$pkg\::output_content"} = sub {
         my $self = shift;
@@ -18,8 +17,8 @@ sub import {
             $self->create_view->process;
         }
 
-        $self->r->content_type($self->response->content_type);
-        $self->set_content_length(length $self->response->body);
+        $self->res->content_length(length $self->response->body);
+        _finalize_header($self);
         $self->send_http_header;
 
         $self->r->print($self->response->body);
@@ -61,6 +60,31 @@ sub import {
 
         return $class->new($self);
     };
+}
+
+# copy from http://search.cpan.org/src/AGRUNDMA/Catalyst-Engine-Apache-1.07/lib/Catalyst/Engine/Apache.pm
+sub _finalize_header {
+    my $self = shift;
+
+    for my $name ( $self->response->headers->header_field_names ) {
+        next if $name =~ /^Content-(Length|Type)$/i;
+
+        my @values = $self->response->header($name);
+        # allow X headers to persist on error
+        if ( $name =~ /^X-/i ) {
+            $self->r->err_headers_out->add( $name => $_ ) for @values;
+        }
+        else {
+            $self->r->headers_out->add( $name => $_ ) for @values;
+        }
+    }
+
+    my $type = $self->response->header('Content-Type') || 'text/html';
+    $self->r->content_type( $type );
+
+    if ( my $length = $self->response->content_length ) {
+        $self->set_content_length( $length );
+    }
 }
 
 1;

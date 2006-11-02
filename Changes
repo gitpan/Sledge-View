@@ -1,5 +1,8 @@
 Revision history for Sledge-View
 
+0.0.3  Fri Nov  3 00:20:41 JST 2006
+       Sledge::Response: use HTTP::Headers
+
 0.0.2  Thu Nov  2 21:12:52 JST 2006
        Plugin::View : change load view class rule
        Plugin::View : remove BEFORE_OUTPUT hook

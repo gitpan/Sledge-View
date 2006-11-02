@@ -34,6 +34,17 @@ Content-Type: text/html; charset=euc-jp
 
 #abc: foo
 
+=== set header
+--- input
+$self->tmpl->param(abc => 'foo');
+$self->res->header(Boo => 'ffy');
+--- expected
+Content-Length: 10
+Boo: ffy
+Content-Type: text/html; charset=euc-jp
+
+#abc: foo
+
 === another view
 --- input
 use t::View::Text;
