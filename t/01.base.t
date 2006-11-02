@@ -75,10 +75,10 @@ $errmsg =~ s/ in .+//mg;
 chomp($errmsg);
 $self->tmpl->param(abc => $errmsg);
 --- expected
-Content-Length: 46
+Content-Length: 34
 Content-Type: text/html; charset=euc-jp
 
-#abc: Can't locate Sledge/View/InvalidView.pm
+#abc: Can't locate InvalidView.pm
 
 === set content-type
 --- input

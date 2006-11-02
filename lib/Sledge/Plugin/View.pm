@@ -9,13 +9,6 @@ sub import {
     my $pkg = caller(0);
 
     # add BEFORE_OUTPUT trigger
-    $pkg->__triggerpoints(
-        {
-            %{ $pkg->__triggerpoints },
-            BEFORE_OUTPUT => 1,
-        }
-    );
-
     no strict 'refs'; ## no critic
     *{"$pkg\::output_content"} = sub {
         my $self = shift;
@@ -24,8 +17,6 @@ sub import {
             # process the default view.
             $self->create_view->process;
         }
-
-        $self->invoke_hook('BEFORE_OUTPUT');
 
         $self->r->content_type($self->response->content_type);
         $self->set_content_length(length $self->response->body);
@@ -60,8 +51,12 @@ sub import {
     *{"$pkg\::view"} = sub {
         my ($self, $class) = @_;
 
-        unless ($class->use) {
-            "Sledge::View::$class"->use or die $@;
+        my $sclass = "Sledge::View::$class";
+        if ($sclass->use) {
+            $class = $sclass;
+        }
+        else {
+            $class->use or die $@;
         }
 
         return $class->new($self);
@@ -73,12 +68,25 @@ __END__
 
 =head1 NAME
 
-Sledge::Plugin::View - use Sledge::View!
+Sledge::Plugin::View - use Sledge::View!(EXPERIMENTAL!!!)
 
 =head1 SYNOPSIS
 
     package Your::Pages;
     use Sledge::Plugin::View;
+    use Sledge::View::Template;
+
+    # set default view class.
+    sub create_view { Sledge::View::Template->new(shift) }
+
+    sub dispatch_index {
+        # use default view.
+    }
+
+    sub dispatch_qrcode {
+        my $self = shift;
+        $self->view('QRCode')->process('http://www.google.com/');
+    }
 
 =head1 DESCRIPTION
 

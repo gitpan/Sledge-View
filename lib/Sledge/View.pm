@@ -1,7 +1,7 @@
 package Sledge::View;
 use strict;
 use warnings;
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 use Sledge::Exceptions;
 
 sub new {
@@ -23,7 +23,7 @@ __END__
 
 =head1 NAME
 
-Sledge::View - abstract base class for Sledge's view
+Sledge::View - abstract base class for Sledge's view(EXPERIMENTAL!!)
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,9 @@
 Revision history for Sledge-View
 
+0.0.2  Thu Nov  2 21:12:52 JST 2006
+       Plugin::View : change load view class rule
+       Plugin::View : remove BEFORE_OUTPUT hook
+
 0.0.1  Sun Oct 29 19:26:36 2006
        Initial release.
 
