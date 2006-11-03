@@ -1,5 +1,8 @@
 Revision history for Sledge-View
 
+0.0.4  Fri Nov  3 16:43:26 JST 2006
+       added Sledge::View::CSV
+
 0.0.3  Fri Nov  3 00:20:41 JST 2006
        Sledge::Response: use HTTP::Headers
 

@@ -14,6 +14,7 @@ ip
 yaml
 HTTP
 html
+csv
 EOF
 
 add_stopwords(@stopwords);

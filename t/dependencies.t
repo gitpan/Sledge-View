@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use Test::More;
-eval q{use Test::Dependencies exclude => [qw/Sledge/];};
+eval q{use Test::Dependencies exclude => [qw/Sledge Text::CSV_XS/];};
 plan skip_all => "Test::Dependencies required for testing dependencies" if $@;
 
 ok_dependencies();

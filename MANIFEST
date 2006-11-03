@@ -20,6 +20,7 @@ inc/Test/More.pm
 lib/Sledge/Plugin/View.pm
 lib/Sledge/Response.pm
 lib/Sledge/View.pm
+lib/Sledge/View/CSV.pm
 lib/Sledge/View/Template.pm
 Makefile.PL
 MANIFEST
@@ -28,6 +29,7 @@ README
 t/00.load.t
 t/01.base.t
 t/02.abstract.t
+t/03.csv.t
 t/dependencies.t
 t/foo.html
 t/perlcritic.t

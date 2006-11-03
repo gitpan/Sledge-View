@@ -11,6 +11,14 @@ requires 'UNIVERSAL::require' => 0;
 build_requires 'Class::Trigger' => 0;
 build_requires 'Test::Base' => 0;
 
+features(
+    'Sledge::View::CSV' => [
+        -default => 1,
+        recommends('Text::CSV_XS'),
+        recommends('Sledge::Plugin::Stash'),
+    ]
+);
+
 use_test_base;
 auto_install;
 WriteAll;

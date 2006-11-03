@@ -11,8 +11,11 @@ no_index:
   directory: 
     - inc
     - t
+recommends: 
+  Sledge::Plugin::Stash: 0
+  Text::CSV_XS: 0
 requires: 
   Class::Accessor::Fast: 0
   HTTP::Headers: 0
   UNIVERSAL::require: 0
-version: 0.03
+version: 0.04
