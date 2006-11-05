@@ -1,5 +1,8 @@
 Revision history for Sledge-View
 
+0.0.5  Sun Nov  5 10:14:00 JST 2006
+       test bug fixed.
+
 0.0.4  Fri Nov  3 16:43:26 JST 2006
        added Sledge::View::CSV
 

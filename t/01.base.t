@@ -4,7 +4,7 @@ use Test::Base;
 
 BEGIN {
     eval q[use t::TestPages];
-    plan skip_all => "Test::Base, t::TestPages required for testing base: $@" if $@;
+    plan skip_all => "t::TestPages required for testing base: $@" if $@;
 };
 plan tests => 1*blocks;
 

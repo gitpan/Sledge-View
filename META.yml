@@ -18,4 +18,4 @@ requires:
   Class::Accessor::Fast: 0
   HTTP::Headers: 0
   UNIVERSAL::require: 0
-version: 0.04
+version: 0.05
