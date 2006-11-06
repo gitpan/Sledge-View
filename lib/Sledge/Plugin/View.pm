@@ -98,19 +98,20 @@ Sledge::Plugin::View - use Sledge::View!(EXPERIMENTAL!!!)
 
     package Your::Pages;
     use Sledge::Plugin::View;
-    use Sledge::View::Template;
+    use Switch;
 
-    # set default view class.
-    sub create_view { Sledge::View::Template->new(shift) }
+    __PACKAGE__->add_trigger(
+        AFTER_DISPATCH => sub {
+            my $self = shift;
 
-    sub dispatch_index {
-        # use default view.
-    }
+            switch ($self->r->param('output')) {
+                case 'csv' { shift->view('CSV')->process }
+                else       { shift->view('Template')->process }
+            }
+        }
+    );
 
-    sub dispatch_qrcode {
-        my $self = shift;
-        $self->view('QRCode')->process('http://www.google.com/');
-    }
+    sub dispatch_index { ... }
 
 =head1 DESCRIPTION
 

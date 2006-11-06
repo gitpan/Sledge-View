@@ -20,7 +20,7 @@ sub render {
 
     my $content = '';
 
-    my $csv = Text::CSV_XS->new({binary => 1});
+    my $csv = Text::CSV_XS->new($self->{page}->stash->{csv_option} || {binary => 1});
 
     my $oneline = sub {
         $csv->combine(@_);
@@ -108,6 +108,12 @@ Set the contents and headers to $self->response.
 
 rendering the csv.
 
+=head1 CONFIGURATION
+
+    $self->stash->{csv_option} = {sep_char => "\t"};
+
+You can set the argument of Text::CSV_XS->new;
+
 =head1 BUGS AND LIMITATIONS
 
 No bugs have been reported.
@@ -115,6 +121,10 @@ No bugs have been reported.
 =head1 AUTHOR
 
 Tokuhiro Matsuno  C<< <tokuhiro __at__ mobilefactory.jp> >>
+
+=head1 THANKS TO
+
+    id:nekokak
 
 =head1 LICENCE AND COPYRIGHT
 

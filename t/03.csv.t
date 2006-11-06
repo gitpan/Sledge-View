@@ -92,3 +92,17 @@ Content-Disposition: attachment; filename="output.csv"
 
 bar,baz
 gee,gaa
+
+=== option for Text::CSV_XS
+--- input
+$self->stash->{rows} = [[qw/a b/], [qw/c d/]];
+$self->stash->{csv_option} = {sep_char => '*'};
+$self->view('CSV')->process;
+--- expected
+Content-Length: 8
+Content-Type: text/comma-separated-values
+Content-Disposition: attachment; filename="output.csv"
+
+a*b
+c*d
+

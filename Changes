@@ -1,5 +1,9 @@
 Revision history for Sledge-View
 
+0.0.6  Mon Nov  6 21:54:37 JST 2006
+       Sledge::View::CSV: added csv_option
+       Sledge::Plugin::View: document updated
+
 0.0.5  Sun Nov  5 10:14:00 JST 2006
        test bug fixed.
 
