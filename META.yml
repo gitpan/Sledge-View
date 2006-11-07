@@ -13,9 +13,11 @@ no_index:
     - t
 recommends: 
   Sledge::Plugin::Stash: 0
+  Template: 0
+  Template::Stash::EscapeHTML: 0
   Text::CSV_XS: 0
 requires: 
   Class::Accessor::Fast: 0
   HTTP::Headers: 0
   UNIVERSAL::require: 0
-version: 0.06
+version: 0.07

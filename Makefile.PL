@@ -16,7 +16,12 @@ features(
         -default => 1,
         recommends('Text::CSV_XS'),
         recommends('Sledge::Plugin::Stash'),
-    ]
+    ],
+    'Sledge::View::TT' => [
+        -default => 1,
+        recommends('Template'),
+        recommends('Template::Stash::EscapeHTML'),
+    ],
 );
 
 use_test_base;

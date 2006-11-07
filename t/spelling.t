@@ -15,6 +15,8 @@ yaml
 HTTP
 html
 csv
+TT
+tt
 EOF
 
 add_stopwords(@stopwords);
