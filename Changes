@@ -1,5 +1,11 @@
 Revision history for Sledge-View
 
+0.0.8  Thu Nov  9 10:49:26 JST 2006
+       Sledge::View::CSV: support DBIC, CDBI.
+
+0.0.7  07 Nov 2006 
+       added Sledge::View::TT
+
 0.0.6  Mon Nov  6 21:54:37 JST 2006
        Sledge::View::CSV: added csv_option
        Sledge::Plugin::View: document updated

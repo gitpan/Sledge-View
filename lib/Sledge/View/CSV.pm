@@ -27,8 +27,8 @@ sub render {
         $content .= $csv->string . "\n";
     };
 
-    unless ($self->{page}->stash->{rows}) {
-        croak "no rows";
+    unless ($self->{page}->stash->{rows} || $self->{page}->stash->{iter}) {
+        croak "no rows for csv";
     }
 
     # headers
@@ -38,19 +38,26 @@ sub render {
 
     # body
     my @keys = @{ $self->{page}->stash->{keys} || []};
-    my @rows = @{ $self->{page}->stash->{rows}};
-    for my $row ( @rows ) {
-        if (ref $row eq 'HASH') {
-            $oneline->(map { $row->{$_} } @keys);
-        }
-        elsif (blessed $row) {
+    if (my $iter = $self->{page}->stash->{iter}) {
+        while (my $row = $iter->next) {
             $oneline->(map { $row->$_ } @keys);
         }
-        elsif (ref $row eq 'ARRAY') {
-            $oneline->(@$row);
-        }
-        else {
-            croak "invalid input: $row";
+    }
+    else {
+        my @rows = @{ $self->{page}->stash->{rows}};
+        for my $row ( @rows ) {
+            if (ref $row eq 'HASH') {
+                $oneline->(map { $row->{$_} } @keys);
+            }
+            elsif (blessed $row) {
+                $oneline->(map { $row->$_ } @keys);
+            }
+            elsif (ref $row eq 'ARRAY') {
+                $oneline->(@$row);
+            }
+            else {
+                croak "invalid input: $row";
+            }
         }
     }
 
